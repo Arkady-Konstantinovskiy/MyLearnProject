@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_selections">
+
+    <!--заметки:
+     - ничего не замечено...
+     -->
+    <fragment
+        android:id="@+id/nav_selections"
+        android:name="com.example.learnapplication.ui.home.HomeFragment"
+        android:label="@string/menu_selections_title"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_selections_to_nav_details"
+            app:destination="@id/nav_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_watch_later"
+        android:name="com.example.learnapplication.ui.home.HomeFragment"
+        android:label="@string/menu_watch_later_title"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_watch_later_to_nav_details"
+            app:destination="@id/nav_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_favorites"
+        android:name="com.example.learnapplication.ui.home.favorites.FavoritesFragment"
+        android:label="@string/menu_favorites_title"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_favorites_to_nav_details"
+            app:destination="@id/nav_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_details"
+        android:name="com.example.learnapplication.ui.details.DetailsFragment"
+        tools:layout="@layout/fragment_details" />
+
+</navigation>
