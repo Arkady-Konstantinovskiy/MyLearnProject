@@ -7,7 +7,14 @@ import com.example.learnapplication.databinding.FilmItemBinding
 //import kotlinx.android.synthetic.main.film_item.view.*
 
 //В конструктор класс передается layout, который мы создали(film_item.xml)
-class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class FilmViewHolder
+//    (itemView: View) : RecyclerView.ViewHolder(itemView)
+//вариант с отрисовкой в FilmViewHolder, получаем от RececlerAdapter только слушатель
+ (
+    itemView: View,
+    private val clickListener: FilmListRecyclerAdapter.OnItemClickListener // Получаем слушатель
+) : RecyclerView.ViewHolder(itemView)
+{
     private val filmItemBinding = FilmItemBinding.bind(itemView)
     //Привязываем view из layout к переменным
     private val title = filmItemBinding.title
@@ -26,25 +33,23 @@ class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         //Устанавливаем описание
         description.text = film.description
 
-        rvBtnFavorite.setOnClickListener(){
-            if (!film.isInFavorites){
-                rvBtnFavorite.setImageResource(R.drawable.ic_round_favorite)
-                film.isInFavorites = true
-            } else {
-                rvBtnFavorite.setImageResource(R.drawable.ic_round_unfavorite)
-                film.isInFavorites = false
-            }
+        val favoriteIcon = if (film.isInFavorites) R.drawable.ic_round_favorite else R.drawable.ic_round_unfavorite
+        rvBtnFavorite.setImageResource(favoriteIcon)
+
+        rvBtnFavorite.setOnClickListener {
+            clickListener.onFavoriteClick(film, adapterPosition)
         }
 
-        rvBtnWatchLater.setOnClickListener(){
-            if (!film.watchLater){
-                rvBtnWatchLater.setImageResource(R.drawable.ic_round_watch_later)
-                film.watchLater = true
-            } else {
-                rvBtnWatchLater.setImageResource(R.drawable.ic_round_unpressed_watch_later)
-                film.watchLater = false
-            }
-        }
+
+//        rvBtnWatchLater.setOnClickListener(){
+//            if (!film.watchLater){
+//                rvBtnWatchLater.setImageResource(R.drawable.ic_round_watch_later)
+//                film.watchLater = true
+//            } else {
+//                rvBtnWatchLater.setImageResource(R.drawable.ic_round_unpressed_watch_later)
+//                film.watchLater = false
+//            }
+//        }
 //        rvBtnFavorite.setImageResource(
 //            if (film.isInFavorites) R.drawable.ic_round_favorite
 //            else R.drawable.ic_round_unfavorite

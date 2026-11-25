@@ -12,7 +12,7 @@ class FilmListDiff(var oldList: MutableList<Film>, var newList: MutableList<Film
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
+        return oldList[oldItemPosition].title == newList[newItemPosition].title
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
@@ -21,6 +21,5 @@ class FilmListDiff(var oldList: MutableList<Film>, var newList: MutableList<Film
          return oldFilm.isInFavorites == newFilm.isInFavorites &&
                 oldFilm.watchLater == newFilm.watchLater
     }
-
 
 }

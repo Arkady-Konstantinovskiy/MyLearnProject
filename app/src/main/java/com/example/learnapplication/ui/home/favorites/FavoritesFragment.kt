@@ -56,6 +56,13 @@ class FavoritesFragment : Fragment() {
 //                        Стандартный вариант с FragmentManager
 //                        (activity as MainActivity).launchDetailsFragment(film)
                     }
+
+                    override fun onFavoriteClick(
+                        film: Film,
+                        position: Int
+                    ) {
+                        TODO("Not yet implemented")
+                    }
                 })
             //Присваиваем адаптер
             adapter = filmsAdapter

@@ -68,20 +68,7 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.bottomNavigation
 
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
-//        val navController = navHostFragment.navController
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-//        короче было как-то так + в content_main.xml был прописан fragment вместо androidX.***.FragmentContainerView
-//        из изменений теперь блокируется bottomNavigation при нахождение в фрагменте с деталями,
-//        в остальном при смене темы все также крашится
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-//        val appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.nav_favorites, R.id.nav_watch_later, R.id.nav_selections
-//            )
-//        )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
     }
