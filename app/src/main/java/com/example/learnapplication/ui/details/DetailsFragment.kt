@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.learnapplication.Film
 import com.example.learnapplication.R
 import com.example.learnapplication.databinding.FragmentDetailsBinding
 import com.example.learnapplication.databinding.FragmentHomeBinding
+import com.google.android.material.snackbar.Snackbar
 
 class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
@@ -44,6 +46,15 @@ class DetailsFragment : Fragment() {
             //Запускаем наше активити
             startActivity(Intent.createChooser(intent, "Share To:"))
         }
+
+        binding.detailsFabFavorite.setOnClickListener {
+            Snackbar.make(binding.root, "Избранное", Snackbar.LENGTH_SHORT).show()
+        }
+
+        binding.detailsFabWatchLater.setOnClickListener {
+            Snackbar.make(binding.root, "Смотреть позже", Snackbar.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun setFilmsDetails() {

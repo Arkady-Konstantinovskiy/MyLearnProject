@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorButtonPress" format="color" />
+    <attr name="colorButtonUnpressed" format="color" />
+    <attr name="colorButtonMenu" format="color" />
+    <attr name="colorCornerBackground" format="color" />
+</resources>

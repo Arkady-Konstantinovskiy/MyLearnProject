@@ -8,18 +8,35 @@
         <item name="colorSurface">@color/colorSurface</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="backgroundColor">@color/white</item>
-        <item name="colorButtonNormal">@color/colorPrimary</item>
-        <item name="android:colorButtonNormal">@color/colorUnpressedBtnLight</item>
+        <item name="colorButtonPress">@color/colorPrimary</item>
+        <item name="colorButtonUnpressed">@color/colorUnpressedBtnLight</item>
+        <item name="colorButtonMenu">@color/white</item>
+        <item name="colorCornerBackground">@drawable/corner_background</item>
         <item name="elevation">1dp</item>
 
     </style>
 
     <style name="Theme.LearnApplication" parent="Base.Theme.LearnApplication" />
 
+    <style name="Widget.App.FAB.DetailsFragment.Favorite" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="strokeColor">?attr/colorPrimary</item>
+        <item name="android:backgroundTint">?attr/backgroundColor</item>
+        <item name="iconTint">?attr/colorPrimary</item>
+
+    </style>
+
+    <style name="Widget.App.FAB.DetailsFragment" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">?backgroundColor</item>
+        <item name="tint">?colorButtonPress</item>
+
+    </style>
+
     <style name="Theme.LearnApplication.PopupOverlay" parent="@style/Widget.MaterialComponents.Toolbar.Primary">
         <item name="menu">@menu/toolbar_menu</item>
         <item name="title">@string/app_bar_title</item>
         <item name="navigationIcon">@drawable/ic_round_menu</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="android:background">@color/colorToolbarLight</item>
 
     </style>
 
