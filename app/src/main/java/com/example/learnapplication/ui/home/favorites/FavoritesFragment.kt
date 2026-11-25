@@ -53,8 +53,7 @@ class FavoritesFragment : Fragment() {
                         (activity as MainActivity).findNavController(R.id.nav_host_fragment_content_main).navigate(
                             R.id.action_nav_favorites_to_nav_details, bundle)
 
-//                        Стандартный вариант с FragmentManager
-//                        (activity as MainActivity).launchDetailsFragment(film)
+
                     }
 
                     override fun onFavoriteClick(

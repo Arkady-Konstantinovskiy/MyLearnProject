@@ -30,21 +30,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initNavigation()
-//        val recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.main_recycler)
-//        val adapter = FilmListRecyclerAdapter(mutableListOf(Film))
-//        recyclerView.adapter = adapter
-//        setSupportActionBar(binding.appBarMain.topAppBar)
-
-
-
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
 
     }
 
@@ -72,25 +62,5 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
     }
-
-//    Стандартный вариант передачи даннных FragmentDetails и его запуска без использования Navigate
-//    P.S: при активном окне FragmentDetails приложение вылетало на смене темы Day/Night если фрагмент передовался в NavHostFragment, ошибку выдавала библиотека Navigate
-//    fun launchDetailsFragment(film: Film) {
-//        //Создаем "посылку"
-//        val bundle = Bundle()
-//        //Кладем наш фильм в "посылку"
-//        bundle.putParcelable("film", film)
-//        //Кладем фрагмент с деталями в перменную
-//        val fragment = DetailsFragment()
-//        //Прикрепляем нашу "посылку" к фрагменту
-//        fragment.arguments = bundle
-//
-//        //Запускаем фрагмент
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.nav_host_fragment_content_main, fragment)
-//            .addToBackStack(null)
-//            .commit()
-//    }
 
 }

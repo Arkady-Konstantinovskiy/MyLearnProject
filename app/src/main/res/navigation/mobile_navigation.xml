@@ -5,9 +5,7 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_selections">
 
-    <!--заметки:
-     - ничего не замечено...
-     -->
+
     <fragment
         android:id="@+id/nav_selections"
         android:name="com.example.learnapplication.ui.home.HomeFragment"

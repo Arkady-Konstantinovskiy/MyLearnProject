@@ -40,24 +40,5 @@ class FilmViewHolder
             clickListener.onFavoriteClick(film, adapterPosition)
         }
 
-
-//        rvBtnWatchLater.setOnClickListener(){
-//            if (!film.watchLater){
-//                rvBtnWatchLater.setImageResource(R.drawable.ic_round_watch_later)
-//                film.watchLater = true
-//            } else {
-//                rvBtnWatchLater.setImageResource(R.drawable.ic_round_unpressed_watch_later)
-//                film.watchLater = false
-//            }
-//        }
-//        rvBtnFavorite.setImageResource(
-//            if (film.isInFavorites) R.drawable.ic_round_favorite
-//            else R.drawable.ic_round_unfavorite
-//        )
-//        rvBtnWatchLater.setImageResource(
-//            if(film.watchLater) R.drawable.ic_round_watch_later
-//            else R.drawable.ic_round_unpressed_watch_later
-//        )
-
     }
 }
