@@ -45,6 +45,14 @@
 
     </style>
 
+    <style name="AlertDialogColorTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Цвет фона -->
+        <item name="colorSurface">@color/white</item>
+        <!-- Цвет текста -->
+        <item name="colorOnSurface">@color/black</item>
+
+    </style>
+
     <style name="bottom_poster_clickable">
         <item name="android:layout_width">150dp</item>
         <item name="android:layout_height">225dp</item>

@@ -64,24 +64,21 @@ class HomeFragment : Fragment() {
 //                        Вариант с использованием Navigate
                         val bundle = Bundle()
                         bundle.putParcelable("film", film)
-//                      заменить nav_details на action когда доделаю верстку других экранов
                         (activity as MainActivity).findNavController(R.id.nav_host_fragment_content_main).navigate(
                             R.id.action_nav_selections_to_nav_details, bundle)
 
-//                        Стандартный вариант с FragmentManager
-//                        (activity as MainActivity).launchDetailsFragment(film)
                     }
 
-                    override fun onFavoriteClick(
-                        film: Film,
-                        position: Int
-                    ) {
-                        // 1. Меняем данные в "базе" через companion object
-                        FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
-
-                        // 2. Просим адаптер перерисовать весь список (в Home все фильмы на месте)
-                        filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
-                    }
+//                    override fun onFavoriteClick(
+//                        film: Film,
+//                        position: Int
+//                    ) {
+//                        // 1. Меняем данные в "базе" через companion object
+//                        FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
+//
+//                        // 2. Просим адаптер перерисовать весь список (в Home все фильмы на месте)
+//                        filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
+//                    }
                 })
             //Присваиваем адаптер
             adapter = filmsAdapter

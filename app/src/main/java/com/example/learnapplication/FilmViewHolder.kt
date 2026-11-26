@@ -37,7 +37,14 @@ class FilmViewHolder
         rvBtnFavorite.setImageResource(favoriteIcon)
 
         rvBtnFavorite.setOnClickListener {
-            clickListener.onFavoriteClick(film, adapterPosition)
+//            clickListener.onFavoriteClick(film, adapterPosition)
+        }
+
+        val watchLaterIcon = if (film.watchLater) R.drawable.ic_round_watch_later else R.drawable.ic_round_unpressed_watch_later
+        rvBtnWatchLater.setImageResource(watchLaterIcon)
+
+        rvBtnWatchLater.setOnClickListener {
+//            clickListener.onWatchLater(film, adapterPosition)
         }
 
 

@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="33"
-                app:srcCompat="@drawable/ic_round_favorite"
+                app:srcCompat="@drawable/ic_round_share"
                 />
 
             <ImageButton

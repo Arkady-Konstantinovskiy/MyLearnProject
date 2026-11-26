@@ -49,20 +49,23 @@ class FavoritesFragment : Fragment() {
 //                        Вариант с использованием Navigate
                         val bundle = Bundle()
                         bundle.putParcelable("film", film)
-//                      заменить nav_details на action когда доделаю верстку других экранов
                         (activity as MainActivity).findNavController(R.id.nav_host_fragment_content_main).navigate(
                             R.id.action_nav_favorites_to_nav_details, bundle)
 
-//                        Стандартный вариант с FragmentManager
-//                        (activity as MainActivity).launchDetailsFragment(film)
                     }
 
-                    override fun onFavoriteClick(
-                        film: Film,
-                        position: Int
-                    ) {
-                        TODO("Not yet implemented")
-                    }
+//                    override fun onFavoriteClick(
+//                        film: Film,
+//                        position: Int
+//                    ) {
+//                        // 1. Меняем данные в "базе"
+//                        FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
+//
+//                        // 2. Обновляем список в адаптере, но применяем ФИЛЬТР!
+//                        // Теперь мы передаем только те, что подходят под условие
+//                        val favoritesOnly = FilmListRecyclerAdapter.filmsDataBase.filter { it.isInFavorites }
+//                        filmsAdapter.updateList(favoritesOnly)
+//                    }
                 })
             //Присваиваем адаптер
             adapter = filmsAdapter
@@ -73,6 +76,8 @@ class FavoritesFragment : Fragment() {
             addItemDecoration(decorator)
         }
         //Кладем нашу БД в RV
-        filmsAdapter.addItems()
+        filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
+//        val favoritesOnly = FilmListRecyclerAdapter.filmsDataBase.filter { it.isInFavorites }
+//        filmsAdapter.updateList(favoritesOnly)
     }
 }

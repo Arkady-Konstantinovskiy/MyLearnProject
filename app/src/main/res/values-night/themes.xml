@@ -40,6 +40,12 @@
 
     </style>
 
+    <style name="AlertDialogColorTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Цвет текста -->
+        <item name="colorOnSurface">@color/white</item>
+
+    </style>
+
 <!--    <style name="my_b_nav" parent="Widget.MaterialComponents.BottomNavigationView">-->
 <!--        <item name="itemTextAppearanceActive">@style/TextAppearance.AppCompat</item>-->
 

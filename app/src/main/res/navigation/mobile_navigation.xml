@@ -5,9 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_selections">
 
-    <!--заметки:
-     - ничего не замечено...
-     -->
     <fragment
         android:id="@+id/nav_selections"
         android:name="com.example.learnapplication.ui.home.HomeFragment"
@@ -15,17 +12,17 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_selections_to_nav_details"
-            app:destination="@id/nav_details" />
+            app:destination="@id/nav_details_for_nav_selections" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_watch_later"
-        android:name="com.example.learnapplication.ui.home.HomeFragment"
+        android:name="com.example.learnapplication.ui.home.watch_later.WatchLaterFragment"
         android:label="@string/menu_watch_later_title"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_watch_later_to_nav_details"
-            app:destination="@id/nav_details" />
+            app:destination="@id/nav_details_for_nav_watch_later" />
     </fragment>
 
     <fragment
@@ -35,12 +32,23 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_favorites_to_nav_details"
-            app:destination="@id/nav_details" />
+            app:destination="@id/nav_details_for_nav_favorites" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_details"
+        android:id="@+id/nav_details_for_nav_selections"
         android:name="com.example.learnapplication.ui.details.DetailsFragment"
         tools:layout="@layout/fragment_details" />
+
+    <fragment
+        android:id="@+id/nav_details_for_nav_watch_later"
+        android:name="com.example.learnapplication.ui.details.DetailsFragment"
+        tools:layout="@layout/fragment_details" />
+
+    <fragment
+        android:id="@+id/nav_details_for_nav_favorites"
+        android:name="com.example.learnapplication.ui.details.DetailsFragment"
+        tools:layout="@layout/fragment_details" />
+
 
 </navigation>
