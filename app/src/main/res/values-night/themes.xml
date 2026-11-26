@@ -1,14 +1,50 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.LearnApplication" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Base.Theme.LearnApplication" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your night theme here. -->
         <item name="colorPrimary">@color/colorPrimaryNight</item>
-        <item name="android:textColorPrimary">@color/light_grey</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColor">@color/light_grey</item>
         <item name="colorSurface">@color/colorSurfaceNight</item>
         <item name="colorOnSurface">@color/light_grey</item>
         <item name="backgroundColor">@color/black</item>
+        <item name="colorButtonPress">@color/colorPrimaryNight</item>
+        <item name="colorButtonUnpressed">@color/colorBtnUnpressedNight</item>
+        <item name="colorButtonMenu">@color/light_grey</item>
+        <item name="colorCornerBackground">@drawable/corner_background</item>
+        <item name="elevation">0dp</item>
 
     </style>
 
     <style name="Theme.LearnApplication" parent="Base.Theme.LearnApplication" />
+
+    <style name="Theme.LearnApplication.PopupOverlay" parent="@style/Widget.MaterialComponents.Toolbar.Primary">
+        <item name="menu">@menu/toolbar_menu</item>
+        <item name="title">@string/app_bar_title</item>
+        <item name="navigationIcon">@drawable/ic_round_menu</item>
+        <item name="titleTextColor">@color/light_grey</item>
+        <item name="android:background">@color/colorBtnUnpressedNight</item>
+
+    </style>
+
+    <style name="Widget.App.FAB.DetailsFragment.Favorite" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="strokeColor">?attr/colorPrimary</item>
+        <item name="android:backgroundTint">?attr/colorSurface</item>
+        <item name="iconTint">?attr/colorPrimary</item>
+
+    </style>
+
+    <style name="Widget.App.FAB.DetailsFragment" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">?colorSurface</item>
+        <item name="tint">?colorButtonPress</item>
+
+    </style>
+
+    <style name="AlertDialogColorTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Цвет текста -->
+        <item name="colorOnSurface">@color/white</item>
+
+    </style>
+
 
 </resources>

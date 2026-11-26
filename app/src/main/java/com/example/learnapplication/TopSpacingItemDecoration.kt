@@ -1,0 +1,28 @@
+package com.example.learnapplication
+
+import android.content.res.Resources
+import android.graphics.Rect
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+
+class TopSpacingItemDecoration (private val paddingInDp: Int): RecyclerView.ItemDecoration() {
+    private val Int.convertPx: Int
+        get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+        super.getItemOffsets(outRect, view, parent, state)
+        outRect.top = paddingInDp.convertPx
+        outRect.right = paddingInDp.convertPx
+        outRect.left = paddingInDp.convertPx
+
+        val position = parent.getChildAdapterPosition(view)
+        val itemCount = state.itemCount
+        // Задаем отступ для последнего элемента
+        if (position == itemCount - 1) {
+            outRect.bottom = paddingInDp.convertPx // Отступ снизу для последнего элемента
+        }
+
+
+
+    }
+}
