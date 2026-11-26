@@ -54,18 +54,7 @@ class FavoritesFragment : Fragment() {
 
                     }
 
-//                    override fun onFavoriteClick(
-//                        film: Film,
-//                        position: Int
-//                    ) {
-//                        // 1. Меняем данные в "базе"
-//                        FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
-//
-//                        // 2. Обновляем список в адаптере, но применяем ФИЛЬТР!
-//                        // Теперь мы передаем только те, что подходят под условие
-//                        val favoritesOnly = FilmListRecyclerAdapter.filmsDataBase.filter { it.isInFavorites }
-//                        filmsAdapter.updateList(favoritesOnly)
-//                    }
+
                 })
             //Присваиваем адаптер
             adapter = filmsAdapter
@@ -77,7 +66,6 @@ class FavoritesFragment : Fragment() {
         }
         //Кладем нашу БД в RV
         filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
-//        val favoritesOnly = FilmListRecyclerAdapter.filmsDataBase.filter { it.isInFavorites }
-//        filmsAdapter.updateList(favoritesOnly)
+
     }
 }

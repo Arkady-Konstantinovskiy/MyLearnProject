@@ -46,10 +46,5 @@
 
     </style>
 
-<!--    <style name="my_b_nav" parent="Widget.MaterialComponents.BottomNavigationView">-->
-<!--        <item name="itemTextAppearanceActive">@style/TextAppearance.AppCompat</item>-->
-
-
-<!--    </style>-->
 
 </resources>

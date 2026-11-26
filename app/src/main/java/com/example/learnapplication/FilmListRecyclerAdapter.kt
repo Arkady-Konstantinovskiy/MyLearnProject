@@ -123,7 +123,5 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
     //Интерфейс для обработки кликов
     interface OnItemClickListener {
         fun click(film: Film)
-        // Создаём метод для кнопки избранное
-//        fun onFavoriteClick(film: Film, position: Int)
     }
 }
