@@ -68,24 +68,54 @@ class MainActivity : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val currentDestination = navController.currentDestination
-
-                // Проверяем, находимся ли мы на стартовом экране самого первого (главного) графа
                 val rootGraph = navController.graph
                 val firstTabGraph = rootGraph.findNode(rootGraph.startDestinationId) as? NavGraph
+
+                // Проверяем, находимся ли мы на стартовом экране первой вкладки
                 val isAtRootStartDestination = currentDestination?.id == firstTabGraph?.startDestinationId
 
-                if (isAtRootStartDestination) {
-                    showExitDialog()
-                } else {
-                    // navigateUp() корректно вернет с корня другой вкладки на первую вкладку,
-                    // а с DetailsFragment — на корневой экран текущей вкладки
-                    if (!navController.navigateUp()) {
+                // Проверяем, находимся ли мы на стартовом экране ЛЮБОЙ вкладки
+                val isAtAnyTabRoot = currentDestination?.id == currentDestination?.parent?.startDestinationId
+
+                when {
+                    isAtRootStartDestination -> {
+                        // Мы в начале первой вкладки — спрашиваем про выход
                         showExitDialog()
+                    }
+                    isAtAnyTabRoot -> {
+                        // Мы в начале 2-й или 3-й вкладки — переключаемся на 1-ю вкладку
+                        // так же, как это делает клик по BottomNavigationView (с restoreState = true)
+                        binding.bottomNavigation.selectedItemId = rootGraph.startDestinationId
+
+                    }
+                    else -> {
+                        // Мы внутри вкладки (например, на nav_details) — просто идем назад по стеку вкладки
+                        navController.popBackStack()
                     }
                 }
             }
         })
     }
+//    Красивый метод для кнопки "Назад",
+//    но при возвращение на начальный экран пропускает экран details_fragment, если тот был ранее открыт с него.
+//    Такова реализация кнопки "Назад" в navigation components по умолчанию.
+//   private fun setupBackPressed() {
+//    val exitCallback = object : OnBackPressedCallback(false) { // По умолчанию выключен!
+//        override fun handleOnBackPressed() {
+//            showExitDialog()
+//        }
+//    }
+//    onBackPressedDispatcher.addCallback(this, exitCallback)
+//
+//    // Включаем наш перехватчик ТОЛЬКО когда пользователь находится на самом первом экране
+//    navController.addOnDestinationChangedListener { controller, destination, _ ->
+//        val rootGraph = controller.graph
+//        val firstTabGraph = rootGraph.findNode(rootGraph.startDestinationId) as? NavGraph
+//
+//        // Callback активен только на стартовом экране первой вкладки
+//        exitCallback.isEnabled = (destination.id == firstTabGraph?.startDestinationId)
+//    }
+//}
 
 
     // 4. Метод для показа всплывающего меню
