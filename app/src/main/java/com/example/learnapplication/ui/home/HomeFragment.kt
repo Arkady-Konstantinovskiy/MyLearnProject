@@ -69,16 +69,16 @@ class HomeFragment : Fragment() {
 
                     }
 
-//                    override fun onFavoriteClick(
-//                        film: Film,
-//                        position: Int
-//                    ) {
-//                        // 1. Меняем данные в "базе" через companion object
-//                        FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
-//
-//                        // 2. Просим адаптер перерисовать весь список (в Home все фильмы на месте)
-//                        filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
-//                    }
+                    override fun onFavoriteClick(
+                        film: Film,
+                        position: Int
+                    ) {
+                        // 1. Меняем данные в "базе" через companion object
+                        FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
+
+                        // 2. Просим адаптер перерисовать весь список (в Home все фильмы на месте)
+                        filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
+                    }
                 })
             //Присваиваем адаптер
             adapter = filmsAdapter
