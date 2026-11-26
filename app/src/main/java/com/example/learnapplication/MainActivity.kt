@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.learnapplication.databinding.ActivityMainBinding
@@ -66,17 +67,26 @@ class MainActivity : AppCompatActivity() {
     private fun setupBackPressed() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Проверяем, является ли текущий фрагмент стартовым (Start Destination)
-                // Это решение универсально: не нужно прописывать ID фрагмента вручную
-                if (navController.currentDestination?.id == navController.graph.startDestinationId) {
+                val currentDestination = navController.currentDestination
+
+                // Проверяем, находимся ли мы на стартовом экране самого первого (главного) графа
+                val rootGraph = navController.graph
+                val firstTabGraph = rootGraph.findNode(rootGraph.startDestinationId) as? NavGraph
+                val isAtRootStartDestination = currentDestination?.id == firstTabGraph?.startDestinationId
+
+                if (isAtRootStartDestination) {
                     showExitDialog()
                 } else {
-                    // Если мы не на главном экране, просто идем назад по стеку
-                    navController.popBackStack()
+                    // navigateUp() корректно вернет с корня другой вкладки на первую вкладку,
+                    // а с DetailsFragment — на корневой экран текущей вкладки
+                    if (!navController.navigateUp()) {
+                        showExitDialog()
+                    }
                 }
             }
         })
     }
+
 
     // 4. Метод для показа всплывающего меню
     private fun showExitDialog() {

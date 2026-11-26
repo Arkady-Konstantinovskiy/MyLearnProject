@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.learnapplication.Film
+import com.example.learnapplication.FilmListRecyclerAdapter
 import com.example.learnapplication.R
 import com.example.learnapplication.databinding.FragmentDetailsBinding
 import com.example.learnapplication.databinding.FragmentHomeBinding
@@ -24,6 +25,16 @@ class DetailsFragment : Fragment() {
     ): View {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    // Вспомогательный метод для смены иконки
+    private fun updateFavoriteIcon() {
+        if (film.isInFavorites) {
+            // Для FloatingActionButton используем setIconResource
+            binding.detailsFabFavorite.setIconResource(R.drawable.ic_round_favorite)
+        } else {
+            binding.detailsFabFavorite.setIconResource(R.drawable.ic_round_unfavorite)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +59,21 @@ class DetailsFragment : Fragment() {
         }
 
         binding.detailsFabFavorite.setOnClickListener {
-            Snackbar.make(binding.root, "Избранное", Snackbar.LENGTH_SHORT).show()
+            // 1. Вызываем метод из адаптера, чтобы изменить статус в filmsDataBase
+            // Мы используем имя класса, так как метод находится в companion object
+            FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
+
+            // 2. Обновляем состояние локального объекта film.
+            // Это важно, потому что film в этом фрагменте — это копия,
+            // и нам нужно, чтобы ее поле isInFavorites изменилось.
+            film.isInFavorites = !film.isInFavorites
+
+            // 3. Обновляем иконку на самой кнопке FAB
+            updateFavoriteIcon()
+
+            // 3. Выводим уведомление пользователю в зависимости от нового состояния
+            val message = if (film.isInFavorites) "Добавлено в избранное" else "Удалено из избранного"
+            Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
         }
 
         binding.detailsFabWatchLater.setOnClickListener {
@@ -67,6 +92,8 @@ class DetailsFragment : Fragment() {
         binding.detailsPoster.setImageResource(film.poster)
         //Устанавливаем описание
         binding.detailsDescription.text = film.description
+        // ВАЖНО: Устанавливаем начальное состояние иконки при открытии
+        updateFavoriteIcon()
 
     }
 

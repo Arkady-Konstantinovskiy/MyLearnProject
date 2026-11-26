@@ -3,52 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_selections">
+    app:startDestination="@id/graph_selections">
 
-    <fragment
-        android:id="@+id/nav_selections"
-        android:name="com.example.learnapplication.ui.home.HomeFragment"
-        android:label="@string/menu_selections_title"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_selections_to_nav_details"
-            app:destination="@id/nav_details_for_nav_selections" />
-    </fragment>
+    <!-- Вложенный граф для первой вкладки (Selections) -->
+    <navigation
+        android:id="@+id/graph_selections"
+        app:startDestination="@id/nav_selections">
+        <fragment
+            android:id="@+id/nav_selections"
+            android:name="com.example.learnapplication.ui.home.HomeFragment"
+            android:label="@string/menu_selections_title"
+            tools:layout="@layout/fragment_home">
+            <action
+                android:id="@+id/action_nav_selections_to_nav_details"
+                app:destination="@id/nav_details_for_nav_selections" />
+        </fragment>
+        <fragment
+            android:id="@+id/nav_details_for_nav_selections"
+            android:name="com.example.learnapplication.ui.details.DetailsFragment"
+            tools:layout="@layout/fragment_details" />
+    </navigation>
 
-    <fragment
-        android:id="@+id/nav_watch_later"
-        android:name="com.example.learnapplication.ui.home.watch_later.WatchLaterFragment"
-        android:label="@string/menu_watch_later_title"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_watch_later_to_nav_details"
-            app:destination="@id/nav_details_for_nav_watch_later" />
-    </fragment>
+    <!-- Вложенный граф для второй вкладки (Watch Later) -->
+    <navigation
+        android:id="@+id/graph_watch_later"
+        app:startDestination="@id/nav_watch_later">
+        <fragment
+            android:id="@+id/nav_watch_later"
+            android:name="com.example.learnapplication.ui.home.watch_later.WatchLaterFragment"
+            android:label="@string/menu_watch_later_title"
+            tools:layout="@layout/fragment_home">
+            <action
+                android:id="@+id/action_nav_watch_later_to_nav_details"
+                app:destination="@id/nav_details_for_nav_watch_later" />
+        </fragment>
+        <fragment
+            android:id="@+id/nav_details_for_nav_watch_later"
+            android:name="com.example.learnapplication.ui.details.DetailsFragment"
+            tools:layout="@layout/fragment_details" />
+    </navigation>
 
-    <fragment
-        android:id="@+id/nav_favorites"
-        android:name="com.example.learnapplication.ui.home.favorites.FavoritesFragment"
-        android:label="@string/menu_favorites_title"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_favorites_to_nav_details"
-            app:destination="@id/nav_details_for_nav_favorites" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_details_for_nav_selections"
-        android:name="com.example.learnapplication.ui.details.DetailsFragment"
-        tools:layout="@layout/fragment_details" />
-
-    <fragment
-        android:id="@+id/nav_details_for_nav_watch_later"
-        android:name="com.example.learnapplication.ui.details.DetailsFragment"
-        tools:layout="@layout/fragment_details" />
-
-    <fragment
-        android:id="@+id/nav_details_for_nav_favorites"
-        android:name="com.example.learnapplication.ui.details.DetailsFragment"
-        tools:layout="@layout/fragment_details" />
-
+    <!-- Вложенный граф для третьей вкладки (Favorites) -->
+    <navigation
+        android:id="@+id/graph_favorites"
+        app:startDestination="@id/nav_favorites">
+        <fragment
+            android:id="@+id/nav_favorites"
+            android:name="com.example.learnapplication.ui.home.favorites.FavoritesFragment"
+            android:label="@string/menu_favorites_title"
+            tools:layout="@layout/fragment_home">
+            <action
+                android:id="@+id/action_nav_favorites_to_nav_details"
+                app:destination="@id/nav_details_for_nav_favorites" />
+        </fragment>
+        <fragment
+            android:id="@+id/nav_details_for_nav_favorites"
+            android:name="com.example.learnapplication.ui.details.DetailsFragment"
+            tools:layout="@layout/fragment_details" />
+    </navigation>
 
 </navigation>
