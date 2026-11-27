@@ -5,7 +5,7 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/graph_selections">
 
-    <!-- Вложенный граф для первой вкладки (Selections) -->
+
     <navigation
         android:id="@+id/graph_selections"
         app:startDestination="@id/nav_selections">
@@ -24,7 +24,7 @@
             tools:layout="@layout/fragment_details" />
     </navigation>
 
-    <!-- Вложенный граф для второй вкладки (Watch Later) -->
+
     <navigation
         android:id="@+id/graph_watch_later"
         app:startDestination="@id/nav_watch_later">
@@ -43,7 +43,7 @@
             tools:layout="@layout/fragment_details" />
     </navigation>
 
-    <!-- Вложенный граф для третьей вкладки (Favorites) -->
+
     <navigation
         android:id="@+id/graph_favorites"
         app:startDestination="@id/nav_favorites">
