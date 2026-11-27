@@ -53,18 +53,25 @@ class WatchLaterFragment : Fragment() {
 
                     }
 
-//                    override fun onFavoriteClick(
-//                        film: Film,
-//                        position: Int
-//                    ) {
-//                        // 1. Меняем данные в "базе"
+                    override fun onFavoriteClick(
+                        film: Film,
+                        position: Int
+                    ) {
+                        // 1. Меняем данные в "базе" через companion object
+                        FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
+
+                        // 2. Просим адаптер перерисовать весь список (в Home все фильмы на месте)*Пока заглушка из HomeFragment
+                        filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
+
+                        //                        // 1. Меняем данные в "базе"
 //                        FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
 //
 //                        // 2. Обновляем список в адаптере, но применяем ФИЛЬТР!
 //                        // Теперь мы передаем только те, что подходят под условие
 //                        val  = FilmListRecyclerAdapter.filmsDataBase.filter { it. }
 //                        filmsAdapter.updateList()
-//                    }
+                    }
+
                 })
             //Присваиваем адаптер
             adapter = filmsAdapter
