@@ -12,11 +12,12 @@ import com.example.learnapplication.FilmListRecyclerAdapter
 import com.example.learnapplication.MainActivity
 import com.example.learnapplication.R
 import com.example.learnapplication.TopSpacingItemDecoration
+import com.example.learnapplication.databinding.FragmentFavoritesBinding
 import com.example.learnapplication.databinding.FragmentHomeBinding
 import com.example.learnapplication.ui.home.HomeFragment
 
 class FavoritesFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     override fun onCreateView(
@@ -24,7 +25,7 @@ class FavoritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
@@ -42,7 +43,7 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun initRecyckler() {
-        binding.mainRecycler.apply {
+        binding.favoritesRecycler.apply {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {
