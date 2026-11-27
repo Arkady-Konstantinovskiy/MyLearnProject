@@ -37,21 +37,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
-        binding.toolbarMain.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.settings -> {
-                    if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        Toast.makeText(this, "Ночная тема выкл", Toast.LENGTH_SHORT).show()
-                    } else {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                        Toast.makeText(this, "Ночная тема вкл", Toast.LENGTH_SHORT).show()
-                    }
-                    true
-                }
-                else -> false
-            }
-        }
+//        binding.toolbarMain.setOnMenuItemClickListener {
+//            when (it.itemId) {
+//                R.id.settings -> {
+//                    if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//                        Toast.makeText(this, "Ночная тема выкл", Toast.LENGTH_SHORT).show()
+//                    } else {
+//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//                        Toast.makeText(this, "Ночная тема вкл", Toast.LENGTH_SHORT).show()
+//                    }
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
 
         val navView: BottomNavigationView = binding.bottomNavigation
 
@@ -96,7 +96,26 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
+//    Красивый метод для кнопки "Назад",
+//    но при возвращение на начальный экран пропускает экран details_fragment, если тот был ранее открыт с него.
+//    Такова реализация кнопки "Назад" в navigation components по умолчанию.
+//   private fun setupBackPressed() {
+//    val exitCallback = object : OnBackPressedCallback(false) { // По умолчанию выключен!
+//        override fun handleOnBackPressed() {
+//            showExitDialog()
+//        }
+//    }
+//    onBackPressedDispatcher.addCallback(this, exitCallback)
+//
+//    // Включаем наш перехватчик ТОЛЬКО когда пользователь находится на самом первом экране
+//    navController.addOnDestinationChangedListener { controller, destination, _ ->
+//        val rootGraph = controller.graph
+//        val firstTabGraph = rootGraph.findNode(rootGraph.startDestinationId) as? NavGraph
+//
+//        // Callback активен только на стартовом экране первой вкладки
+//        exitCallback.isEnabled = (destination.id == firstTabGraph?.startDestinationId)
+//    }
+//}
 
 
     // 4. Метод для показа всплывающего меню
