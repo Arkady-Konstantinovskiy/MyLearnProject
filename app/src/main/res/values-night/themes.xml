@@ -46,6 +46,16 @@
 
     </style>
 
+    <style name="MySearchField" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_height">45dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:hint">@string/app_bar_title</item>
+        <item name="android:textColorHint">?colorButtonMenu</item>
+
+    </style>
+
 <!--    <style name="my_b_nav" parent="Widget.MaterialComponents.BottomNavigationView">-->
 <!--        <item name="itemTextAppearanceActive">@style/TextAppearance.AppCompat</item>-->
 
