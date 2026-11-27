@@ -91,15 +91,6 @@
                 />
         </LinearLayout>
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/RV_btn_favor"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            style="@style/Widget.Material3.Button.IconButton.Filled"-->
-<!--            app:srcCompat="@drawable/ic_round_favorite"-->
-<!--            app:tint="@color/colorBackgroundLight"-->
-
-<!--            />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

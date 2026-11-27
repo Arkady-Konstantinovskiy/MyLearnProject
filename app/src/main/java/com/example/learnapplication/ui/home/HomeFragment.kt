@@ -61,30 +61,6 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-//    private fun setupSearch() {
-//        // 1. Находим нашу поисковую строку
-//        val searchEditText = binding.searchTextEditText
-//
-//        // 2. Устанавливаем слушатель изменений текста
-//        searchEditText.doOnTextChanged { text, _, _, _ ->
-//            val query = text.toString().trim() // Получаем текст и удаляем пробелы по краям
-//
-//            // 3. Фильтруем список
-//            val filteredList = if (query.isEmpty()) {
-//                // Если строка поиска пустая — показываем весь список
-//                FilmListRecyclerAdapter.filmsDataBase
-//            } else {
-//                // Если есть текст — фильтруем по названию (регистронезависимо)
-//                FilmListRecyclerAdapter.filmsDataBase.filter { film ->
-//                    film.title.contains(query, ignoreCase = true)
-//                }
-//            }
-//
-//            // 4. Обновляем адаптер отфильтрованным списком
-//            // Благодаря вашему DiffUtil, это будет выглядеть плавно
-//            filmsAdapter.updateList(filteredList)
-//        }
-//    }
     private fun setupSearch() {
         // 1. Находим нашу поисковую строку
         val searchEditText = binding.searchEditText

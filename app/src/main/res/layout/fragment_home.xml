@@ -7,7 +7,6 @@
     android:background="?attr/backgroundColor"
     tools:context=".ui.home.HomeFragment">
 
-    <!-- 1. AppBarLayout управляет поведением сворачивания -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +32,6 @@
 
         </com.google.android.material.appbar.MaterialToolbar>
 
-        <!-- 2. Переносим top_holder внутрь AppBarLayout, чтобы он тоже скрывался при скролле -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/top_holder"
             android:layout_width="match_parent"
@@ -110,7 +108,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- 3. RecyclerView теперь прямой потомок CoordinatorLayout и использует scrolling_view_behavior -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycler"
         android:layout_width="match_parent"
