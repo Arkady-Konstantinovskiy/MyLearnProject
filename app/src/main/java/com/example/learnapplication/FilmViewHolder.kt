@@ -4,17 +4,10 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learnapplication.databinding.FilmItemBinding
 
-//import kotlinx.android.synthetic.main.film_item.view.*
-
-//В конструктор класс передается layout, который мы создали(film_item.xml)
-class FilmViewHolder
-//    (itemView: View) : RecyclerView.ViewHolder(itemView)
 //вариант с отрисовкой в FilmViewHolder, получаем от RececlerAdapter только слушатель
- (
-    itemView: View,
+class FilmViewHolder (itemView: View,
     private val clickListener: FilmListRecyclerAdapter.OnItemClickListener // Получаем слушатель
-) : RecyclerView.ViewHolder(itemView)
-{
+) : RecyclerView.ViewHolder(itemView) {
     private val filmItemBinding = FilmItemBinding.bind(itemView)
     //Привязываем view из layout к переменным
     private val title = filmItemBinding.title
@@ -46,25 +39,6 @@ class FilmViewHolder
         rvBtnWatchLater.setOnClickListener {
             clickListener.onWatchLaterClick(film, adapterPosition)
         }
-
-
-//        rvBtnWatchLater.setOnClickListener(){
-//            if (!film.watchLater){
-//                rvBtnWatchLater.setImageResource(R.drawable.ic_round_watch_later)
-//                film.watchLater = true
-//            } else {
-//                rvBtnWatchLater.setImageResource(R.drawable.ic_round_unpressed_watch_later)
-//                film.watchLater = false
-//            }
-//        }
-//        rvBtnFavorite.setImageResource(
-//            if (film.isInFavorites) R.drawable.ic_round_favorite
-//            else R.drawable.ic_round_unfavorite
-//        )
-//        rvBtnWatchLater.setImageResource(
-//            if(film.watchLater) R.drawable.ic_round_watch_later
-//            else R.drawable.ic_round_unpressed_watch_later
-//        )
 
     }
 }

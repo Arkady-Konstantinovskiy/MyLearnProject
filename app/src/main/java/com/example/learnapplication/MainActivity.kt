@@ -37,21 +37,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
-//        binding.toolbarMain.setOnMenuItemClickListener {
-//            when (it.itemId) {
-//                R.id.settings -> {
-//                    if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-//                        Toast.makeText(this, "Ночная тема выкл", Toast.LENGTH_SHORT).show()
-//                    } else {
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-//                        Toast.makeText(this, "Ночная тема вкл", Toast.LENGTH_SHORT).show()
-//                    }
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
 
         val navView: BottomNavigationView = binding.bottomNavigation
 

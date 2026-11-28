@@ -1,9 +1,12 @@
 package com.example.learnapplication.ui.home.watch_later
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +35,8 @@ class WatchLaterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyckler()
+        setupSearch() // Вызываем метод настройки поиска
+        initMenuBtn()
 
     }
 
@@ -91,5 +96,67 @@ class WatchLaterFragment : Fragment() {
         //Кладем нашу БД в RV
         val watchLaterOnly = FilmListRecyclerAdapter.filmsDataBase.filter { it.watchLater }
         filmsAdapter.updateList(watchLaterOnly)
+    }
+
+    private fun setupSearch() {
+        // 1. Находим нашу поисковую строку
+        val searchEditText = binding.searchEditTextWatchLater
+
+        // Вместо doOnTextChanged мы используем классический addTextChangedListener
+        searchEditText.addTextChangedListener(object : android.text.TextWatcher {
+
+            // 1. Вызывается ПЕРЕД тем, как текст изменился
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Здесь нам ничего не нужно делать, оставляем пустым
+            }
+
+            // 2. Вызывается в момент ИЗМЕНЕНИЯ текста (самый важный метод для поиска)
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString().trim()
+
+                // Создаем новый список для результатов поиска
+                val filteredList = mutableListOf<Film>()
+
+                if (query.isEmpty()) {
+                    // Если поиск пустой, то копируем весь список watchLater=true из базы
+                    filteredList.addAll(FilmListRecyclerAdapter.filmsDataBase.filter { it.watchLater })
+                } else {
+                    // Можно использовать .filter { ... }
+                    // или обычный цикл for
+                    for (film in FilmListRecyclerAdapter.filmsDataBase) {
+                        // Если название фильма содержит текст запроса (без учета регистра)
+                        if (film.title.contains(query, ignoreCase = true)) {
+                            filteredList.add(film) // Добавляем подходящий фильм в список
+                        }
+                    }
+                }
+
+                // Отправляем полученный список в адаптер
+                filmsAdapter.updateList(filteredList)
+            }
+
+            // 3. Вызывается ПОСЛЕ того, как текст изменился
+            override fun afterTextChanged(p0: Editable) {
+                // Здесь нам ничего не нужно делать
+            }
+        })
+    }
+
+    private fun initMenuBtn() {
+        binding.toolbarWatchLater.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.settings -> {
+                    if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        Toast.makeText(requireContext(), "Ночная тема выкл", Toast.LENGTH_SHORT).show()
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        Toast.makeText(requireContext(), "Ночная тема вкл", Toast.LENGTH_SHORT).show()
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
     }
 }

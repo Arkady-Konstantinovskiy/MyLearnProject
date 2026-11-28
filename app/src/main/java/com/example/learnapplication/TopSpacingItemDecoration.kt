@@ -22,7 +22,5 @@ class TopSpacingItemDecoration (private val paddingInDp: Int): RecyclerView.Item
             outRect.bottom = paddingInDp.convertPx // Отступ снизу для последнего элемента
         }
 
-
-
     }
 }
