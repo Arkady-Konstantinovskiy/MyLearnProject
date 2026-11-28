@@ -51,7 +51,7 @@
             android:id="@+id/nav_favorites"
             android:name="com.example.learnapplication.ui.home.favorites.FavoritesFragment"
             android:label="@string/menu_favorites_title"
-            tools:layout="@layout/fragment_home">
+            tools:layout="@layout/fragment_favorites">
             <action
                 android:id="@+id/action_nav_favorites_to_nav_details"
                 app:destination="@id/nav_details_for_nav_favorites" />

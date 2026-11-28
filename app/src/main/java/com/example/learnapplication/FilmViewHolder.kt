@@ -33,7 +33,7 @@ class FilmViewHolder
         //Устанавливаем описание
         description.text = film.description
 
-        val favoriteIcon = if (film.isInFavorites) R.drawable.ic_round_favorite else R.drawable.ic_round_unfavorite
+        val favoriteIcon = if (film.favorite) R.drawable.ic_round_favorite else R.drawable.ic_round_unfavorite
         rvBtnFavorite.setImageResource(favoriteIcon)
 
         rvBtnFavorite.setOnClickListener {
@@ -44,7 +44,7 @@ class FilmViewHolder
         rvBtnWatchLater.setImageResource(watchLaterIcon)
 
         rvBtnWatchLater.setOnClickListener {
-//            clickListener.onWatchLater(film, adapterPosition)
+            clickListener.onWatchLaterClick(film, adapterPosition)
         }
 
 

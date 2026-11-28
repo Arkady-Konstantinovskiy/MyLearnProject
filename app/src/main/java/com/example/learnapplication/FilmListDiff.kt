@@ -18,7 +18,7 @@ class FilmListDiff(var oldList: MutableList<Film>, var newList: MutableList<Film
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldFilm = oldList[oldItemPosition]
         val newFilm = newList[newItemPosition]
-         return oldFilm.isInFavorites == newFilm.isInFavorites &&
+         return oldFilm.favorite == newFilm.favorite &&
                 oldFilm.watchLater == newFilm.watchLater
     }
 

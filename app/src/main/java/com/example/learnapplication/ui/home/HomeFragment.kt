@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
 //    }
     private fun setupSearch() {
         // 1. Находим нашу поисковую строку
-        val searchEditText = binding.searchEditText
+        val searchEditText = binding.searchEditTextHome
 
         // Вместо doOnTextChanged мы используем классический addTextChangedListener
         searchEditText.addTextChangedListener(object : android.text.TextWatcher {
@@ -169,6 +169,19 @@ class HomeFragment : Fragment() {
 
                         // 2. Просим адаптер перерисовать весь список (в Home все фильмы на месте)
                         filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
+
+                    }
+
+                    override fun onWatchLaterClick(
+                        film: Film,
+                        position: Int
+                    ) {
+                        // 1. Меняем данные в "базе" через companion object
+                        FilmListRecyclerAdapter.toggleWatchLaterInDatabase(film)
+
+                        // 2. Просим адаптер перерисовать весь список (в Home все фильмы на месте)
+                        filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
+
                     }
                 })
             //Присваиваем адаптер

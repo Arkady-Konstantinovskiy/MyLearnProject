@@ -2,7 +2,6 @@ package com.example.learnapplication
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 //import kotlinx.android.synthetic.main.film_item.view.*
@@ -58,7 +57,21 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
             if (index != -1) {
                 // 2. ВАЖНО: Создаем КОПИЮ объекта с измененным значением
                 // Если мы просто напишем film.isInFavorites = true, DiffUtil не сработает!
-                val updatedFilm = filmsDataBase[index].copy(isInFavorites = !filmsDataBase[index].isInFavorites)
+                val updatedFilm = filmsDataBase[index].copy(favorite = !filmsDataBase[index].favorite)
+
+                // 3. Заменяем старый объект новым в списке
+                filmsDataBase[index] = updatedFilm
+            }
+        }
+
+        fun toggleWatchLaterInDatabase(film: Film) {
+            // 1. Находим индекс фильма в общем списке
+            val index =
+                filmsDataBase.indexOfFirst { it.title == film.title } // Сравниваем по названию или ID
+            if (index != -1) {
+                // 2. ВАЖНО: Создаем КОПИЮ объекта с измененным значением
+                // Если мы просто напишем film.isInFavorites = true, DiffUtil не сработает!
+                val updatedFilm = filmsDataBase[index].copy(watchLater = !filmsDataBase[index].watchLater)
 
                 // 3. Заменяем старый объект новым в списке
                 filmsDataBase[index] = updatedFilm
@@ -123,7 +136,9 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
     //Интерфейс для обработки кликов
     interface OnItemClickListener {
         fun click(film: Film)
-        // Создаём метод для кнопки избранное
+        // Создаем метод для кнопки избранное
         fun onFavoriteClick(film: Film, position: Int)
+        //Создаем метод для кнопки смотреть позже
+        fun onWatchLaterClick(film: Film, position: Int)
     }
 }

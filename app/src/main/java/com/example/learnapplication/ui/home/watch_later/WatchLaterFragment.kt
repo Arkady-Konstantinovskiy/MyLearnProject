@@ -12,10 +12,10 @@ import com.example.learnapplication.FilmListRecyclerAdapter
 import com.example.learnapplication.MainActivity
 import com.example.learnapplication.R
 import com.example.learnapplication.TopSpacingItemDecoration
-import com.example.learnapplication.databinding.FragmentHomeBinding
+import com.example.learnapplication.databinding.FragmentWatchLaterBinding
 
 class WatchLaterFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentWatchLaterBinding? = null
     private val binding get() = _binding!!
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     override fun onCreateView(
@@ -23,7 +23,7 @@ class WatchLaterFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentWatchLaterBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
@@ -41,7 +41,7 @@ class WatchLaterFragment : Fragment() {
     }
 
     private fun initRecyckler() {
-        binding.mainRecycler.apply {
+        binding.watchLaterRecycler.apply {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {
@@ -53,6 +53,19 @@ class WatchLaterFragment : Fragment() {
 
                     }
 
+                    override fun onWatchLaterClick(
+                        film: Film,
+                        position: Int
+                    ) {
+                        // 1. Меняем данные в "базе"
+                        FilmListRecyclerAdapter.toggleWatchLaterInDatabase(film)
+
+                        // 2. Обновляем список в адаптере, но применяем ФИЛЬТР!
+                        // Теперь мы передаем только те, что подходят под условие
+                        val watchLaterOnly = FilmListRecyclerAdapter.filmsDataBase.filter { it.watchLater }
+                        filmsAdapter.updateList(watchLaterOnly)
+                    }
+
                     override fun onFavoriteClick(
                         film: Film,
                         position: Int
@@ -60,16 +73,10 @@ class WatchLaterFragment : Fragment() {
                         // 1. Меняем данные в "базе" через companion object
                         FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
 
-                        // 2. Просим адаптер перерисовать весь список (в Home все фильмы на месте)*Пока заглушка из HomeFragment
-                        filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
+                        // 2. Просим адаптер перерисовать весь список (в WatchLater остаются только watchLater=true)
+                        val watchLaterOnly = FilmListRecyclerAdapter.filmsDataBase.filter { it.watchLater }
+                        filmsAdapter.updateList(watchLaterOnly)
 
-                        //                        // 1. Меняем данные в "базе"
-//                        FilmListRecyclerAdapter.toggleFavoriteInDatabase(film)
-//
-//                        // 2. Обновляем список в адаптере, но применяем ФИЛЬТР!
-//                        // Теперь мы передаем только те, что подходят под условие
-//                        val  = FilmListRecyclerAdapter.filmsDataBase.filter { it. }
-//                        filmsAdapter.updateList()
                     }
 
                 })
@@ -82,8 +89,7 @@ class WatchLaterFragment : Fragment() {
             addItemDecoration(decorator)
         }
         //Кладем нашу БД в RV
-        filmsAdapter.updateList(FilmListRecyclerAdapter.filmsDataBase)
-//        val  = FilmListRecyclerAdapter.filmsDataBase.filter { it. }
-//        filmsAdapter.updateList()
+        val watchLaterOnly = FilmListRecyclerAdapter.filmsDataBase.filter { it.watchLater }
+        filmsAdapter.updateList(watchLaterOnly)
     }
 }
